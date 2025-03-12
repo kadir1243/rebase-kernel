@@ -197,7 +197,7 @@ int rmnet_ipa_set_data_quota(struct wan_ioctl_set_data_quota *data)
 	return -EPERM;
 }
 
-void ipa_broadcast_quota_reach_ind(uint8_t mux_id)
+void ipa_broadcast_quota_reach_ind(uint32_t mux_id)
 {
 	return;
 }
