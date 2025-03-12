@@ -156,42 +156,6 @@ void ipa_qmi_stop_workqueues(void);
 
 #else /* CONFIG_RMNET_IPA */
 
-static inline int ipa_qmi_service_init(uint32_t wan_platform_type)
-{
-	return -EPERM;
-}
-
-static inline void ipa_qmi_service_exit(void)
-{
-	return;
-}
-
-/* sending filter-install-request to modem*/
-static inline int qmi_filter_request_send(
-	struct ipa_install_fltr_rule_req_msg_v01 *req)
-{
-	return -EPERM;
-}
-
-/* sending filter-installed-notify-request to modem*/
-static inline int qmi_filter_notify_send(
-	struct ipa_fltr_installed_notif_req_msg_v01 *req)
-{
-	return -EPERM;
-}
-
-static inline int qmi_enable_force_clear_datapath_send(
-	struct ipa_enable_force_clear_datapath_req_msg_v01 *req)
-{
-	return -EPERM;
-}
-
-static inline int qmi_disable_force_clear_datapath_send(
-	struct ipa_disable_force_clear_datapath_req_msg_v01 *req)
-{
-	return -EPERM;
-}
-
 static inline int copy_ul_filter_rule_to_ipa(
 	struct ipa_install_fltr_rule_req_msg_v01 *rule_req, uint32_t *rule_hdl)
 {
@@ -223,16 +187,6 @@ static inline void wan_ioctl_deinit(void)
 	return;
 }
 
-static inline void ipa_qmi_stop_workqueues(void)
-{
-	return;
-}
-
-static inline int vote_for_bus_bw(uint32_t *bw_mbps)
-{
-	return -EPERM;
-}
-
 int rmnet_ipa_poll_tethering_stats(struct wan_ioctl_poll_tethering_stats *data)
 {
 	return -EPERM;
@@ -248,39 +202,9 @@ void ipa_broadcast_quota_reach_ind(uint8_t mux_id)
 	return;
 }
 
-int ipa_qmi_get_data_stats(struct ipa_get_data_stats_req_msg_v01 *req,
-	struct ipa_get_data_stats_resp_msg_v01 *resp);
-{
-	return -EPERM;
-}
-
-int ipa_qmi_get_network_stats(struct ipa_get_apn_data_stats_req_msg_v01 *req,
-	struct ipa_get_apn_data_stats_resp_msg_v01 *resp);
-{
-	return -EPERM;
-}
-
-int ipa_qmi_set_data_quota(struct ipa_set_network_quota_req_msg_v01 *req)
-{
-	return -EPERM;
-}
-
-int ipa_qmi_stop_data_qouta(void)
-{
-	return -EPERM;
-}
-
 void ipa_q6_handshake_complete(bool)
 {
 	return;
-}
-
-void ipa_qmi_init(void)
-{
-}
-
-void ipa_qmi_cleanup(void)
-{
 }
 
 #endif /* CONFIG_RMNET_IPA */
