@@ -12,6 +12,7 @@
 #include <asm/barrier.h>
 #include <linux/delay.h>
 #include <linux/device.h>
+#include <linux/cpufreq.h>
 #include "ipa_i.h"
 
 /*

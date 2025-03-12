@@ -156,6 +156,10 @@ static inline unsigned int cpufreq_quick_get_max(unsigned int cpu)
 	return 0;
 }
 static inline void disable_cpufreq(void) { }
+extern int cpufreq_get_policy(struct cpufreq_policy *policy, unsigned int cpu);
+extern int cpufreq_update_policy(unsigned int cpu);
+extern bool have_governor_per_policy(void);
+extern struct kobject *get_governor_parent_kobj(struct cpufreq_policy *policy);
 #endif
 
 /*********************************************************************
