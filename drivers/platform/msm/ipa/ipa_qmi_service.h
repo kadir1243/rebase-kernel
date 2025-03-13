@@ -162,6 +162,19 @@ static inline int copy_ul_filter_rule_to_ipa(
 	return -EPERM;
 }
 
+static inline int qmi_enable_force_clear_datapath_send(
+	struct ipa_enable_force_clear_datapath_req_msg_v01 *req)
+{
+	return -EPERM;
+}
+
+static inline int qmi_disable_force_clear_datapath_send(
+	struct ipa_disable_force_clear_datapath_req_msg_v01 *req)
+{
+	return -EPERM;
+}
+
+
 static inline int wwan_update_mux_channel_prop(void)
 {
 	return -EPERM;
