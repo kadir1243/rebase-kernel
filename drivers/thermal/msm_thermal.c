@@ -487,8 +487,6 @@ static ssize_t thermal_config_debugfs_write(struct file *file,
 		_flag = 0; \
 	} while (0)
 
-extern struct cpufreq_frequency_table *cpufreq_frequency_get_table(unsigned int cpu);
-
 static uint32_t get_mask_from_core_handle(struct platform_device *pdev,
 						const char *key)
 {
@@ -1600,7 +1598,7 @@ static int check_freq_table(void)
 		return ret;
 	}
 
-	table = cpufreq_frequency_get_table(0);
+	table = cpufreq_frequency_get_table((unsigned int)0);
 	if (!table) {
 		pr_debug("error reading cpufreq table\n");
 		return -EINVAL;
