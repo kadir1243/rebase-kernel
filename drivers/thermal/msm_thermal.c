@@ -487,8 +487,6 @@ static ssize_t thermal_config_debugfs_write(struct file *file,
 		_flag = 0; \
 	} while (0)
 
-extern struct cpufreq_frequency_table *cpufreq_frequency_get_table(unsigned int cpu);
-
 static uint32_t get_mask_from_core_handle(struct platform_device *pdev,
 						const char *key)
 {
@@ -1582,6 +1580,7 @@ static void do_cluster_freq_ctrl(long temp)
 /* If freq table exists, then we can send freq request */
 static int check_freq_table(void)
 {
+	struct cpufreq_policy *policy;
 	int ret = 0;
 	uint32_t i = 0;
 	static bool invalid_table;
@@ -1600,7 +1599,14 @@ static int check_freq_table(void)
 		return ret;
 	}
 
-	table = cpufreq_frequency_get_table(0);
+    policy = cpufreq_cpu_get(0);
+    if (!policy || !policy->freq_table) {
+        pr_debug("error reading cpufreq table for CPU0\n");
+        return -EINVAL;
+    }
+
+    table = policy->freq_table;
+    cpufreq_cpu_put(policy);
 	if (!table) {
 		pr_debug("error reading cpufreq table\n");
 		return -EINVAL;
